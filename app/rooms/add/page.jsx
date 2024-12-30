@@ -1,14 +1,34 @@
+'use client';
+import { useEffect, useActionState } from 'react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
+import createRoom from '@/app/actions/createRoom';
 import Heading from '@/components/Heading';
 
 const AddRoomPage = () => {
+    const [state, formAction] = useActionState(createRoom, {});
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if (state.error) {
+            toast.error(state.error);
+        }
+
+        if (state.success) {
+            toast.success('Room created successfully');
+            router.push('/rooms/my');
+        }
+    }, [state]);
+
     return (
         <>
             <Heading title='Add a room'></Heading>
             <div className='bg-white shadow-lg rounded-lg p-6 w-full'>
-                <form>
+                <form action={formAction}>
                     <div className='mb-4'>
                         <label
-                            for='name'
+                            htmlFor='name'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Room Name
@@ -25,7 +45,7 @@ const AddRoomPage = () => {
 
                     <div className='mb-4'>
                         <label
-                            for='description'
+                            htmlFor='description'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Description
@@ -41,7 +61,7 @@ const AddRoomPage = () => {
 
                     <div className='mb-4'>
                         <label
-                            for='sqft'
+                            htmlFor='sqft'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Square Feet
@@ -58,7 +78,7 @@ const AddRoomPage = () => {
 
                     <div className='mb-4'>
                         <label
-                            for='capacity'
+                            htmlFor='capacity'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Capacity
@@ -92,7 +112,7 @@ const AddRoomPage = () => {
 
                     <div className='mb-4'>
                         <label
-                            for='address'
+                            htmlFor='address'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Address
@@ -109,7 +129,7 @@ const AddRoomPage = () => {
 
                     <div className='mb-4'>
                         <label
-                            for='location'
+                            htmlFor='location'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Location
@@ -126,7 +146,7 @@ const AddRoomPage = () => {
 
                     <div className='mb-4'>
                         <label
-                            for='availability'
+                            htmlFor='availability'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Availability
@@ -143,7 +163,7 @@ const AddRoomPage = () => {
 
                     <div className='mb-4'>
                         <label
-                            for='amenities'
+                            htmlFor='amenities'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Amenities
@@ -161,7 +181,7 @@ const AddRoomPage = () => {
                     {/* <!-- Image Upload --> */}
                     <div className='mb-8'>
                         <label
-                            for='image'
+                            htmlFor='image'
                             className='block text-gray-700 font-bold mb-2'
                         >
                             Image

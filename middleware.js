@@ -4,13 +4,13 @@ import checkAuth from './app/actions/checkAuth';
 export async function middleware(request) {
     const { isAuthenticated } = await checkAuth();
 
-    if(!isAuthenticated) {
+    if (!isAuthenticated) {
         return NextResponse.redirect(new URL('/login', request.url).toString());
     }
-    
+
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/bookings']
-}
+    matcher: ['/bookings', '/rooms/add', '/rooms/my'],
+};
