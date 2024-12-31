@@ -38,8 +38,6 @@ async function createUser(previousState, formData) {
         }
     }
     catch (error) {
-        console.error('Registartion error:', error);
-        
         return {
             error: error.message
         }

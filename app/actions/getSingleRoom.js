@@ -20,7 +20,6 @@ async function getSingleRoom({ id }) {
 
         return room;
     } catch (error) {
-        console.log('Failed to get room', error);
         redirect('/error');
     }
 }

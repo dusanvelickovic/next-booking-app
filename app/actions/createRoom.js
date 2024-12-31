@@ -42,7 +42,7 @@ async function createRoom(previousState, formData) {
         }
 
         // Create a room
-        const newRoom = await databases.createDocument(
+        await databases.createDocument(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
             process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ROOMS,
             ID.unique(),
@@ -67,8 +67,6 @@ async function createRoom(previousState, formData) {
             success: true,
         };
     } catch (error) {
-        console.error('Error creating room:', error);
-
         return {
             error: error.message,
         };

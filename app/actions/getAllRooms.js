@@ -19,7 +19,6 @@ async function getAllRooms() {
 
     return rooms;
   } catch (error) {
-    console.log('Failed to get rooms', error);
     redirect('/error');
   }
 }
